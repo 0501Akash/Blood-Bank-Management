@@ -1,0 +1,175 @@
+<html>
+    <head>
+        <style>
+                  *
+            {
+                padding: 0px;
+                margin: 0px;
+            }
+            .b
+            {
+                width: 65%;
+                height: 50px;
+                background-color:red;
+                float: left;
+                color: white;
+            }
+            .b1
+            {
+                margin-top: -2px;
+                margin-left: 20px;
+            }
+            .b2
+            {
+                float: right;
+                margin-top: -18px;
+                margin-right: 200px;
+            }
+            .c
+            {
+                width: 35%;
+                height: 50px;
+                background-color: red;
+                float: left; 
+            }
+
+            .menu
+            {
+                display: inline-block;
+                padding: 20px 25px 0px 2px;
+                
+            }
+            
+            .menu a
+            {
+                color: white;
+                text-decoration: none;
+            }
+            .menu a:hover
+            {
+                text-decoration: underline;
+            }
+            .d
+            {
+                width: 100%;
+                height: 100%;
+            }
+            .d1
+            {
+                width: 320px;
+                height: 350px;
+                background-color: gray;
+                margin-top: 150px;
+                margin-left: 530px;
+            }
+            .d2
+            {
+                margin-top: 10px;
+                margin-left: 50px;
+            }
+            .d3
+            {
+                margin-left: 10px;
+                margin-top: 20px;
+
+            }
+            .d4
+            {
+                margin-top: -20px;
+                margin-left: 10px;
+                width: 300px;
+                height: 25px;
+            }
+            .d5
+            {
+                width:300px;
+                height: 60px;
+                margin-left: 10px;
+                margin-top: -20;
+            }
+            .e
+            {
+              width: 60%;
+              float: left;
+              height: 600px;
+            }
+            .e2
+            {
+              width: 700px;
+              height: 357px;
+              margin-top: 50px; 
+              border-radius: 20px; 
+              box-shadow: 5px 5px 10px 0px gray;
+            }
+            .d6
+            {
+                width: 70px;
+                height: 25px;
+                background-color: red;
+                color: white;
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+        </style>
+        <body>
+            <div class="a">
+                <div class="b"><br><div class="b1"><h3>BLOOD BANK MANAGMENT SYSTEM</h3><h4 class="b2">Patient User</h4></div></div>
+                <div class="c"><ul class="nav">
+                    <li class="menu"><a href="donor dashboard.html">Dashboard</a></li>
+                    <li class="menu"><a href="patient request blood.php">Request blood</a></li>
+                    <li class="menu"><a href="patient request history.php">Request History</a></li>
+                    <li class="menu"><a href="blood bank.php">logout</a></li>
+                </ul></div>
+                
+                    <div class="d"><br><div class="d1"><h2 class="d2">Blood Donation Form</h2><br>
+                        <form action='patient request blood result.php'>
+                            id no:
+                            <?php
+                            $connect=mysqli_connect('localhost','root','seedit','blood');
+                            $q="select max(id) as id from patient_request_blood";
+                            $rs=mysqli_query($connect,$q);
+                            if($row=mysqli_fetch_array($rs))
+                            {
+                               
+                                $x=$row['id']+1;
+                                echo"$x";
+                                session_start();
+                                $_SESSION['x']=$x;
+                            }
+                            else
+                            {
+                                 echo"1";
+                            }
+                            ?>
+                        <p class="d3">Blood Group:</p><br>
+                    <select class="d4" name="t1">
+                        <option>-select-</option>
+                        <option>A</option>
+                        <option>A-</option>
+                        <option>B</option>
+                        <option>B-</option>
+                        <option>O</option>
+                        <option>O-</option>
+                        <option>AB</option>
+                        <option>AB-</option>
+                    </select><br>
+                    <p class="d3">No of Units:</p><br>
+                    <select class="d4" name="t2">
+                        <option>no of unit</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select><br>
+                    <p class="d3">Reason:</p><br>
+                <input type="text" placeholder="Mention the reason" class="d5" name="t3"><br>
+            <input type="submit" value="Request" class="d6"></div></div>
+                </div>
+            </form>
+                </div></div>
+        </body>
+    </head>
+</html>
